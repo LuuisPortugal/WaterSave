@@ -2,9 +2,11 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
+using WaterSave.Models;
+
 namespace WaterSave.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutViewModel : BaseViewModel<Item>
     {
         public AboutViewModel()
         {

@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace WaterSave.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsViewModel : BaseViewModel<Item>
     {
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
