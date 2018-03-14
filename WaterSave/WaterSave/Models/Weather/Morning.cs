@@ -8,7 +8,7 @@ namespace WaterSave.Models.Weather
 {
     class Morning : BaseDataObject
     {
-        int Min;
-        int Max;
+        public int Min;
+        public int Max;
     }
 }

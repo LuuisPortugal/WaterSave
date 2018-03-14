@@ -8,14 +8,14 @@ namespace WaterSave.Models.Weather
 {
     class Date : BaseDataObject
     {
-        String Date;
-        String DateBr;
-        Humidity Humidity;
-        Rain Rain;
-        Wind Wind;
-        Uv Uv;
-        ThermalSensation ThermalSensation;
-        TextIcon TextIcon;
-        Temperature Temperature;
+        public String Date;
+        public String DateBr;
+        public Humidity Humidity;
+        public Rain Rain;
+        public Wind Wind;
+        public Uv Uv;
+        public ThermalSensation ThermalSensation;
+        public TextIcon TextIcon;
+        public Temperature Temperature;
     }
 }

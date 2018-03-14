@@ -10,29 +10,104 @@ using WaterSave.Models.Weather;
 
 namespace WaterSave.Services
 {
-    class WeatherDataStore
+    class WeatherDataStore : IDataStore<Date>
     {
-        private HttpClient client;
+        bool isInitialized;
 
-        public WeatherDataStore()
+        bool IsSuccessStatusCode;
+        Weather Weather;
+        WeatherErro WeatherErro;
+
+        public async Task<bool> AddItemAsync(Date item)
         {
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
+            await InitializeAsync();
+
+            Weather.Data.Add(item);
+
+            return await Task.FromResult(true);
         }
 
-        public async Task<WeatherResult> GetForecast15Async()
+        public async Task<bool> UpdateItemAsync(Date item)
         {
+            await InitializeAsync();
+
+            var _item = Weather.Data.FirstOrDefault(s => s.Id == item.Id);
+            Weather.Data.Remove(_item);
+            Weather.Data.Add(item);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteItemAsync(Date item)
+        {
+            await InitializeAsync();
+
+            var _item = Weather.Data.FirstOrDefault(s => s.Id == item.Id);
+            Weather.Data.Remove(_item);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<Date> GetItemAsync(string id)
+        {
+            await InitializeAsync();
+
+            return await Task.FromResult(Weather.Data.FirstOrDefault(s => s.Id == id));
+        }
+
+        public async Task<Date> GetItemAsyncByDate(string date)
+        {
+            await InitializeAsync();
+
+            return await Task.FromResult(Weather.Data.FirstOrDefault(s => s.DateBr == date));
+        }
+
+        public async Task<IEnumerable<Date>> GetItemsAsync(bool forceRefresh = false)
+        {
+            await InitializeAsync();
+
+            return await Task.FromResult(Weather.Data);
+        }
+
+        public Task<bool> PullLatestAsync()
+        {
+            return Task.FromResult(true);
+        }
+
+
+        public Task<bool> SyncAsync()
+        {
+            return Task.FromResult(true);
+        }
+
+        public async Task InitializeAsync()
+        {
+            if (isInitialized)
+                return;
+
+            HttpClient client = new HttpClient();
+            client.MaxResponseContentBufferSize = 256000;
+
             var url = string.Format(
-                App.Current.Resources["WS_CT_UrlForecast15"].ToString(),
-                App.Current.Resources["WS_CT_Key"].ToString(),
-                App.Current.Resources["WS_CT_BelemID"].ToString()
+                App.Current.Resources["WS_CT_UrlForecast15"] as String,
+                App.Current.Resources["WS_CT_Key"] as String,
+                App.Current.Resources["WS_CT_BelemID"] as String
             );
 
             var uri = new Uri(url);
             var response = await client.GetAsync(uri);
             var content = await response.Content.ReadAsStringAsync();
 
-            return new WeatherResult(response.IsSuccessStatusCode, content);
+            if (IsSuccessStatusCode = response.IsSuccessStatusCode)
+            {
+                Weather = JsonConvert.DeserializeObject<Weather>(content);
+            }
+            else
+            {
+                WeatherErro = JsonConvert.DeserializeObject<WeatherErro>(content);
+            }
+
+            isInitialized = true;
         }
     }
 }

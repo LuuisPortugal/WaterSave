@@ -8,10 +8,10 @@ namespace WaterSave.Models.Weather
 {
     class Phrase : BaseDataObject
     {
-        String Reduced;
-        String Dawn;
-        String Morning;
-        String Afternoon;
-        String Night;
+        public String Reduced;
+        public String Dawn;
+        public String Morning;
+        public String Afternoon;
+        public String Night;
     }
 }

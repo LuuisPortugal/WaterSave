@@ -8,11 +8,11 @@ namespace WaterSave.Models.Weather
 {
     class Wind
     {
-        int VelocityMin;
-        int VelocityMax;
-        int VelocityAvg;
-        int GustMax;
-        int DirectionDegrees;
-        String Direction;
+        public int VelocityMin;
+        public int VelocityMax;
+        public int VelocityAvg;
+        public int GustMax;
+        public int DirectionDegrees;
+        public String Direction;
     }
 }

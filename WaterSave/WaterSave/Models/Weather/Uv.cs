@@ -8,6 +8,6 @@ namespace WaterSave.Models.Weather
 {
     class Uv : BaseDataObject
     {
-        int Max;
+        public int Max;
     }
 }

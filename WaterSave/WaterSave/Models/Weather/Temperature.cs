@@ -8,10 +8,10 @@ namespace WaterSave.Models.Weather
 {
     class Temperature : BaseDataObject
     {
-        int Min;
-        int Max;
-        Morning Morning;
-        Afternoon Afternoon;
-        Night Night;
+        public int Min;
+        public int Max;
+        public Morning Morning;
+        public Afternoon Afternoon;
+        public Night Night;
     }
 }

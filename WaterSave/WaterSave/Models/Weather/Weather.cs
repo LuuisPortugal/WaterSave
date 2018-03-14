@@ -8,9 +8,9 @@ namespace WaterSave.Models.Weather
 {
     class Weather : BaseDataObject
     {
-        String Name;
-        String State;
-        String Country;
-        Date[] Data;
+        public String Name;
+        public String State;
+        public String Country;
+        public List<Date> Data;
     }
 }

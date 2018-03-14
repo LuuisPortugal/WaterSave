@@ -8,7 +8,7 @@ namespace WaterSave.Models.Weather
 {
     class TextIcon : BaseDataObject
     {
-        Icon Icon;
-        Text Text;
+        public Icon Icon;
+        public Text Text;
     }
 }

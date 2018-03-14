@@ -8,9 +8,9 @@ namespace WaterSave.Models.Weather
 {
     class Text : BaseDataObject
     {
-        String Pt;
-        String En;
-        String Es;
-        Phrase Phrase;
+        public String Pt;
+        public String En;
+        public String Es;
+        public Phrase Phrase;
     }
 }

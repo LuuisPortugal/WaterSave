@@ -8,10 +8,10 @@ namespace WaterSave.Models.Weather
 {
     class Icon : BaseDataObject
     {
-        String Dawn;
-        String Morning;
-        String Afternoon;
-        String Night;
-        String Day;
+        public String Dawn;
+        public String Morning;
+        public String Afternoon;
+        public String Night;
+        public String Day;
     }
 }

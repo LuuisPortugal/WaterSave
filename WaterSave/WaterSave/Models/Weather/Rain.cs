@@ -8,7 +8,7 @@ namespace WaterSave.Models.Weather
 {
     class Rain : BaseDataObject
     {
-        int Probability;
-        int Precipitation;
+        public int Probability;
+        public int Precipitation;
     }
 }
