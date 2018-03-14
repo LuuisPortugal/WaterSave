@@ -42,10 +42,28 @@
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
+    <Compile Include="Models\Weather\Afternoon.cs" />
+    <Compile Include="Models\Weather\Date.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Weather\Humidity.cs" />
+    <Compile Include="Models\Weather\Icon.cs" />
+    <Compile Include="Models\Weather\Morning.cs" />
+    <Compile Include="Models\Weather\Night.cs" />
+    <Compile Include="Models\Weather\Phrase.cs" />
+    <Compile Include="Models\Weather\Rain.cs" />
+    <Compile Include="Models\Weather\Temperature.cs" />
+    <Compile Include="Models\Weather\Text.cs" />
+    <Compile Include="Models\Weather\TextIcon.cs" />
+    <Compile Include="Models\Weather\ThermalSensation.cs" />
+    <Compile Include="Models\Weather\Uv.cs" />
+    <Compile Include="Models\Weather\Weather.cs" />
+    <Compile Include="Models\Weather\WeatherErro.cs" />
+    <Compile Include="Models\Weather\WeatherResult.cs" />
+    <Compile Include="Models\Weather\Wind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
+    <Compile Include="Services\WeatherDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
@@ -86,6 +104,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
