@@ -13,6 +13,11 @@
             <x:String x:Key="WS_CT_BelemID">7704</x:String>
             <x:String x:Key="WS_CT_UrlForecast15">http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/{1}/days/15?token={0}</x:String>
 
+            <x:String x:Key="WS_CM_User">16005251-8bc7-4673-b8db-986b057cb272</x:String>
+            <x:String x:Key="WS_CM_Password"></x:String>
+            <x:String x:Key="WS_CM_UrlListInstance">https://customer.cloudmqtt.com/api/instances</x:String>
+            <x:String x:Key="WS_CM_UrlInstance">https://customer.cloudmqtt.com/api/instances/{0}</x:String>
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BarTextColor" Value="White" />

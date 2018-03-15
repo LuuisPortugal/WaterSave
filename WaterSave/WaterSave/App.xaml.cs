@@ -26,6 +26,11 @@ namespace WaterSave
                         Title = "Browse",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
+                    new NavigationPage(new DevicesPage())
+                    {
+                        Title = "Dispositivos",
+                        Icon = Device.OnPlatform("tab_about.png", null, null)
+                    },
                     new NavigationPage(new ForecastGainPage())
                     {
                         Title = "Previsão de Ganhos",

@@ -7,17 +7,18 @@ using Xamarin.Forms;
 
 namespace WaterSave.Views
 {
-    public partial class ForecastGainPage : ContentPage
+    public partial class DevicesPage : ContentPage
     {
-        ForecastGainViewModel viewModel;
+        DevicesViewModel viewModel;
 
-        public ForecastGainPage()
+        public DevicesPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ForecastGainViewModel();
+            BindingContext = viewModel = new DevicesViewModel();
 
-            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "messageForecastGain", (MessagingCenterAlert message) =>
+
+            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "messageDevice", (MessagingCenterAlert message) =>
             {
                 DisplayAlert(message.Title, message.Message, message.Cancel);
             });
@@ -25,14 +26,14 @@ namespace WaterSave.Views
 
         protected void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            DatesListView.SelectedItem = null;
+            InstancesListView.SelectedItem = null;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Dates.Count == 0)
+            if (viewModel.Instances.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
     }

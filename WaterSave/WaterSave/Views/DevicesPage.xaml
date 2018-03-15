@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WaterSave.Views.ForecastGainPage"
+             x:Class="WaterSave.Views.DevicesPage"
               Title="{Binding Title}"
-             x:Name="ForecastGainPage">
+             x:Name="DevicesPage">
     <ContentPage.Content>
     <StackLayout>
-      <ListView x:Name="DatesListView"
-				ItemsSource="{Binding Dates}"
+            <ListView x:Name="InstancesListView"
+				ItemsSource="{Binding Instances}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
                 RefreshCommand="{Binding LoadItemsCommand}"
@@ -18,16 +18,12 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-              <StackLayout Padding="10">
-                <Label Text="{Binding DateBr}"
-                       LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="16"/>
-                                <Label Text="{Binding TextIcon.Text.Phrase.Reduced}"
-                       LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemDetailTextStyle}"
-                       FontSize="13"/>
-              </StackLayout>
+                <StackLayout Padding="10">
+                    <Label Text="{Binding Name}"
+                        LineBreakMode="NoWrap"
+                        Style="{DynamicResource ListItemTextStyle}"
+                        FontSize="16"/>
+                </StackLayout>
             </ViewCell>
           </DataTemplate>
         </ListView.ItemTemplate>

@@ -5,24 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WaterSave.Helpers;
-using WaterSave.Models.Weather;
+using WaterSave.Models.CloudMqtt;
 using Xamarin.Forms;
 
 namespace WaterSave.ViewModels
 {
-    class ForecastGainViewModel : BaseViewModel<Date>
+    class DevicesViewModel : BaseViewModel<Instance>
     {
-        public ObservableRangeCollection<Date> Dates { get; set; }
+        public ObservableRangeCollection<Instance> Instances { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ForecastGainViewModel()
+        public DevicesViewModel()
         {
-            Title = "Previsão de Ganhos";
-            Dates = new ObservableRangeCollection<Date>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadDatesCommand());
+            Title = "Dispositivos";
+            Instances = new ObservableRangeCollection<Instance>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadInstancesCommand());           
         }
 
-        async Task ExecuteLoadDatesCommand()
+        async Task ExecuteLoadInstancesCommand()
         {
             if (IsBusy)
                 return;
@@ -31,18 +31,18 @@ namespace WaterSave.ViewModels
 
             try
             {
-                Dates.Clear();
-                var dates = await DataStore.GetItemsAsync(true);
-                Dates.ReplaceRange(dates);
+                Instances.Clear();
+                var instances = await DataStore.GetItemsAsync(true);
+                Instances.ReplaceRange(instances);
             }
             catch (Exception ex)
             {
                 MessagingCenter.Send(new MessagingCenterAlert
                 {
                     Title = "Erro",
-                    Message = "Não é possível carregar as Previsões de Ganhos.",
+                    Message = "Não é possível carregar os Dispositivos.",
                     Cancel = "OK"
-                }, "messageForecastGain");
+                }, "messageDevice");
             }
             finally
             {
