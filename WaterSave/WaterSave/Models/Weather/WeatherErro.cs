@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class WeatherErro
+    public class WeatherErro : BaseDataObject
     {
-        public int StatusCode;
-        public String Detail;
+        int statusCode;
+        public int StatusCode
+        {
+            get { return statusCode; }
+            set { SetProperty(ref statusCode, value); }
+        }
+
+        string detail;
+        public string Detail
+        {
+            get { return detail; }
+            set { SetProperty(ref detail, value); }
+        }
     }
 }

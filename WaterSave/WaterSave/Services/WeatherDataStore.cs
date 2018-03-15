@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-using WaterSave.Models.Weather;
+using Xamarin.Forms;
 
+using WaterSave.Models.Weather;
+using WaterSave.Helpers;
+using System.Diagnostics;
+
+[assembly: Dependency(typeof(WaterSave.Services.WeatherDataStore))]
 namespace WaterSave.Services
 {
     class WeatherDataStore : IDataStore<Date>
     {
         bool isInitialized;
-
-        bool IsSuccessStatusCode;
         Weather Weather;
         WeatherErro WeatherErro;
 
@@ -55,15 +58,8 @@ namespace WaterSave.Services
             return await Task.FromResult(Weather.Data.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<Date> GetItemAsyncByDate(string date)
-        {
-            await InitializeAsync();
-
-            return await Task.FromResult(Weather.Data.FirstOrDefault(s => s.DateBr == date));
-        }
-
         public async Task<IEnumerable<Date>> GetItemsAsync(bool forceRefresh = false)
-        {
+        { 
             await InitializeAsync();
 
             return await Task.FromResult(Weather.Data);
@@ -84,28 +80,17 @@ namespace WaterSave.Services
         {
             if (isInitialized)
                 return;
+        
+            var resources = App.Current.Resources;
+            var url = string.Format(resources["WS_CT_UrlForecast15"] as string, resources["WS_CT_Key"] as string, resources["WS_CT_BelemID"] as string);
+            var uri = new Uri(url);
 
             HttpClient client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
-
-            var url = string.Format(
-                App.Current.Resources["WS_CT_UrlForecast15"] as String,
-                App.Current.Resources["WS_CT_Key"] as String,
-                App.Current.Resources["WS_CT_BelemID"] as String
-            );
-
-            var uri = new Uri(url);
             var response = await client.GetAsync(uri);
             var content = await response.Content.ReadAsStringAsync();
 
-            if (IsSuccessStatusCode = response.IsSuccessStatusCode)
-            {
-                Weather = JsonConvert.DeserializeObject<Weather>(content);
-            }
-            else
-            {
-                WeatherErro = JsonConvert.DeserializeObject<WeatherErro>(content);
-            }
+            response.EnsureSuccessStatusCode();
+            Weather = JsonConvert.DeserializeObject<Weather>(content);
 
             isInitialized = true;
         }

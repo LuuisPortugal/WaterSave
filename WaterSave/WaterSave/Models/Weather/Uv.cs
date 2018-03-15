@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class Uv : BaseDataObject
+    public class Uv : BaseDataObject
     {
-        public int Max;
+        int max;
+        public int Max
+        {
+            get { return max; }
+            set { SetProperty(ref max, value); }
+        }
     }
 }

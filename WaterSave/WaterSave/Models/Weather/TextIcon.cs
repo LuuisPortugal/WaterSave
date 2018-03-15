@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class TextIcon : BaseDataObject
+    public class TextIcon : BaseDataObject
     {
-        public Icon Icon;
-        public Text Text;
+        Icon icon;
+        public Icon Icon
+        {
+            get { return icon; }
+            set { SetProperty(ref icon, value); }
+        }
+
+        Text text;
+        public Text Text
+        {
+            get { return text; }
+            set { SetProperty(ref text, value); }
+        }
     }
 }

@@ -24,13 +24,13 @@ namespace WaterSave
                     new NavigationPage(new ItemsPage())
                     {
                         Title = "Browse",
-                        Icon = Device.OnPlatform("tab_feed.png",null,null)
+                        Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
-                    new NavigationPage(new AboutPage())
+                    new NavigationPage(new ForecastGainPage())
                     {
-                        Title = "About",
-                        Icon = Device.OnPlatform("tab_about.png",null,null)
-                    },
+                        Title = "Previsão de Ganhos",
+                        Icon = Device.OnPlatform("tab_about.png", null, null)
+                    }
                 }
             };
         }

@@ -6,11 +6,34 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class Text : BaseDataObject
+    public class Text : BaseDataObject
     {
-        public String Pt;
-        public String En;
-        public String Es;
-        public Phrase Phrase;
+        string pt;
+        public string Pt
+        {
+            get { return pt; }
+            set { SetProperty(ref pt, value); }
+        }
+
+        string en;
+        public string En
+        {
+            get { return en; }
+            set { SetProperty(ref en, value); }
+        }
+
+        string es;
+        public string Es
+        {
+            get { return es; }
+            set { SetProperty(ref es, value); }
+        }
+
+        Phrase phrase;
+        public Phrase Phrase
+        {
+            get { return phrase; }
+            set { SetProperty(ref phrase, value); }
+        }    
     }
 }

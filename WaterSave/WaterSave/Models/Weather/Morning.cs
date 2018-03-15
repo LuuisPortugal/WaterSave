@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class Morning : BaseDataObject
+    public class Morning : BaseDataObject
     {
-        public int Min;
-        public int Max;
+        int min;
+        public int Min
+        {
+            get { return min; }
+            set { SetProperty(ref min, value); }
+        }
+
+        int max;
+        public int Max
+        {
+            get { return max; }
+            set { SetProperty(ref max, value); }
+        }
     }
 }

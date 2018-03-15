@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class Rain : BaseDataObject
+    public class Rain : BaseDataObject
     {
-        public int Probability;
-        public int Precipitation;
+        int probability;
+        public int Probability
+        {
+            get { return probability; }
+            set { SetProperty(ref probability, value); }
+        }
+
+        int precipitation;
+        public int Precipitation
+        {
+            get { return precipitation; }
+            set { SetProperty(ref precipitation, value); }
+        }
     }
 }

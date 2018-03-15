@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace WaterSave.Models.Weather
 {
-    class ThermalSensation : BaseDataObject
+    public class ThermalSensation : BaseDataObject
     {
-        public int Min;
-        public int Max;
+        int min;
+        public int Min
+        {
+            get { return min; }
+            set { SetProperty(ref min, value); }
+        }
+
+        int max;
+        public int Max
+        {
+            get { return max; }
+            set { SetProperty(ref max, value); }
+        }
     }
 }
