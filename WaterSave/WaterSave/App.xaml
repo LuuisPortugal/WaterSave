@@ -9,7 +9,8 @@
             <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
-            <x:String x:Key="WS_CT_Key">b9691bca83986c6db40e28ef565e3b5d</x:String>
+
+            <x:String x:Key="WS_CT_Key">c54e5a038adf8ad1d45d5a0f8b948503</x:String>
             <x:String x:Key="WS_CT_BelemID">7704</x:String>
             <x:String x:Key="WS_CT_UrlForecast15">http://apiadvisor.climatempo.com.br/api/v1/forecast/locale/{1}/days/15?token={0}</x:String>
 

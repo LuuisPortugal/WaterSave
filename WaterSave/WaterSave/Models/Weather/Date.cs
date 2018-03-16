@@ -8,7 +8,9 @@ namespace WaterSave.Models.Weather
 {
     public class Date : BaseDataObject
     {
-        string dateBr = string.Empty;
+        public string date;
+
+        string dateBr;
         public string DateBr
         {
             get { return dateBr; }

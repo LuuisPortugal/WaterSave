@@ -59,7 +59,9 @@ namespace WaterSave.Services
         }
 
         public async Task<IEnumerable<Date>> GetItemsAsync(bool forceRefresh = false)
-        { 
+        {
+            isInitialized = isInitialized && !forceRefresh;
+
             await InitializeAsync();
 
             return await Task.FromResult(Weather.Data);
@@ -87,7 +89,7 @@ namespace WaterSave.Services
 
             HttpClient client = new HttpClient();
             var response = await client.GetAsync(uri);
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync();           
 
             response.EnsureSuccessStatusCode();
             Weather = JsonConvert.DeserializeObject<Weather>(content);

@@ -18,9 +18,9 @@ namespace WaterSave.Views
             BindingContext = viewModel = new DevicesViewModel();
 
 
-            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "messageDevice", (MessagingCenterAlert message) =>
+            MessagingCenter.Subscribe<string>(this, "messageDevices", (string message) =>
             {
-                DisplayAlert(message.Title, message.Message, message.Cancel);
+                DisplayAlert(viewModel.Title, message, "Ok");
             });
         }
 

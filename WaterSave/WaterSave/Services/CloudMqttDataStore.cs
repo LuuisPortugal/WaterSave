@@ -12,6 +12,7 @@ using WaterSave.Models.CloudMqtt;
 using WaterSave.Helpers;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 
 [assembly: Dependency(typeof(WaterSave.Services.CloudMqttDataStore))]
 namespace WaterSave.Services
@@ -19,7 +20,7 @@ namespace WaterSave.Services
     class CloudMqttDataStore : IDataStore<Instance>
     {
         bool isInitialized;
-        List<Instance> Instance;
+        List<Instance> Instances;
         HttpClient client;
         ResourceDictionary resources;
 
@@ -38,7 +39,7 @@ namespace WaterSave.Services
         {
             await InitializeAsync();
 
-            Instance.Add(item);
+            Instances.Add(item);
 
             return await Task.FromResult(true);
         }
@@ -47,9 +48,9 @@ namespace WaterSave.Services
         {
             await InitializeAsync();
 
-            var _item = Instance.FirstOrDefault(s => s.Id == item.Id);
-            Instance.Remove(_item);
-            Instance.Add(item);
+            var _item = Instances.FirstOrDefault(s => s.Id == item.Id);
+            Instances.Remove(_item);
+            Instances.Add(item);
 
             return await Task.FromResult(true);
         }
@@ -58,8 +59,8 @@ namespace WaterSave.Services
         {
             await InitializeAsync();
 
-            var _item = Instance.FirstOrDefault(s => s.Id == item.Id);
-            Instance.Remove(_item);
+            var _item = Instances.FirstOrDefault(s => s.Id == item.Id);
+            Instances.Remove(_item);
 
             return await Task.FromResult(true);
         }
@@ -68,7 +69,7 @@ namespace WaterSave.Services
         {
             await InitializeAsync();
 
-            Instance instance = Instance.FirstOrDefault(s => s.Id == id);
+            Instance instance = Instances.FirstOrDefault(s => s.Id == id);
 
             var url = String.Format(resources["WS_CM_UrlInstance"] as string, id);
             var uri = new Uri(url);
@@ -89,7 +90,7 @@ namespace WaterSave.Services
 
             await InitializeAsync();
 
-            return await Task.FromResult(Instance);
+            return await Task.FromResult(Instances);
         }
 
         public Task<bool> PullLatestAsync()
@@ -113,7 +114,24 @@ namespace WaterSave.Services
             var content = await response.Content.ReadAsStringAsync();
 
             response.EnsureSuccessStatusCode();
-            Instance = JsonConvert.DeserializeObject<List<Instance>>(content);
+            Instances = JsonConvert.DeserializeObject<List<Instance>>(content);
+
+            foreach (var _instance in Instances)
+            {
+                var namePart = _instance.Name.Split(':');
+                _instance.Type = namePart[0];
+                _instance.Component = namePart[1];
+                _instance.Description = namePart[2];
+
+                switch (_instance.Component)
+                {
+                    case Instance.COMPONENT_CAIXA:    _instance.Icon = ImageSource.FromResource("icons8-torre-de-agua"); break;
+                    case Instance.COMPONENT_CISTERNA: _instance.Icon = ImageSource.FromResource("icons8-cisterna");      break;
+                    case Instance.COMPONENT_BOMBA:    _instance.Icon = ImageSource.FromResource("icons8-motor");         break;
+                    case Instance.COMPONENT_VALVULA:  _instance.Icon = ImageSource.FromResource("icons8-encanamento");   break;
+                    default:                          _instance.Icon = ImageSource.FromResource("icons8-sensor");        break;
+                }
+            }
 
             isInitialized = true;
         }

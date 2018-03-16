@@ -37,12 +37,7 @@ namespace WaterSave.ViewModels
             }
             catch (Exception ex)
             {
-                MessagingCenter.Send(new MessagingCenterAlert
-                {
-                    Title = "Erro",
-                    Message = "Não é possível carregar os Dispositivos.",
-                    Cancel = "OK"
-                }, "messageDevice");
+                MessagingCenter.Send("Não é possível carregar os Dispositivos.", "messageDevice");
             }
             finally
             {

@@ -37,12 +37,7 @@ namespace WaterSave.ViewModels
             }
             catch (Exception ex)
             {
-                MessagingCenter.Send(new MessagingCenterAlert
-                {
-                    Title = "Erro",
-                    Message = "Não é possível carregar as Previsões de Ganhos.",
-                    Cancel = "OK"
-                }, "messageForecastGain");
+                MessagingCenter.Send("Não é possível carregar as Previsões de Ganhos.", "messageForecastGain");
             }
             finally
             {

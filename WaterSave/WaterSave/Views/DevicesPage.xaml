@@ -18,11 +18,15 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
-                <StackLayout Padding="10">
-                    <Label Text="{Binding Name}"
-                        LineBreakMode="NoWrap"
-                        Style="{DynamicResource ListItemTextStyle}"
-                        FontSize="16"/>
+                <StackLayout Padding="10" Orientation="Horizontal">
+                    <StackLayout Orientation="Vertical" WidthRequest="90">
+                                    <Image Source="icons8-sensor.png" Aspect="AspectFill" />
+                        <Label Text="{Binding Component}" FontAttributes="Bold" HorizontalTextAlignment="Center" LineBreakMode="TailTruncation" FontSize="16"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Description}" LineBreakMode="TailTruncation" FontSize="24"/>
+                        <Label Text="{Binding Type}"        LineBreakMode="TailTruncation" FontSize="16"/>
+                    </StackLayout>
                 </StackLayout>
             </ViewCell>
           </DataTemplate>

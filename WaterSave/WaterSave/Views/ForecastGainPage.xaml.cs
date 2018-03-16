@@ -17,9 +17,9 @@ namespace WaterSave.Views
 
             BindingContext = viewModel = new ForecastGainViewModel();
 
-            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "messageForecastGain", (MessagingCenterAlert message) =>
+            MessagingCenter.Subscribe<string>(this, "messageForecastGain", (string message) =>
             {
-                DisplayAlert(message.Title, message.Message, message.Cancel);
+                DisplayAlert(viewModel.Title, message, "Ok");
             });
         }
 
